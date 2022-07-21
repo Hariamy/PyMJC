@@ -1,5 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from typing import Set
 
 from pymjc.front.symbol import Symbol
 
@@ -33,6 +34,16 @@ class TempList():
                 last = last.tail
             last.tail = TempList(element, None)
 
+    def templist_to_set(self) -> Set[Temp]:
+        iter_h = self.head
+        iter_t = self.tail
+        set_aux = set()
+        while iter_h is not None:
+            set_aux.add(iter_h)
+            iter_h = iter_t.head
+            iter_t = iter_t.tail
+
+        return set_aux
         
 
 
